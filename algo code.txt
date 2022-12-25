@@ -1,0 +1,43 @@
+package com.example.algotask
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.View
+import kotlinx.android.synthetic.main.activity_main.*
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        fun insertionSort(arr: ArrayList<Int>) {
+            val lastIndex: Int = arr.size - 1
+
+            for (i in 1..lastIndex) {
+                val temp: Int = arr[i]
+                var holePosition: Int = i
+                while(holePosition > 0 && arr[holePosition - 1] > temp) {
+                    arr[holePosition] = arr[holePosition - 1]
+                    holePosition--
+                }
+                arr[holePosition] = temp
+            }
+        }
+        bt.setOnClickListener(object :View.OnClickListener{
+
+            override fun onClick(v: View?) {
+      var s:String=t1.text.toString()
+                var al:ArrayList<Int> =ArrayList()
+                for(i in s){
+                    al.add(i.toString().toInt())
+                }
+                insertionSort(al)
+                var rs:String=""
+                for(i in al ){
+                    rs+=i.toString()
+                }
+                res.text=rs
+            }
+
+        })
+    }
+}
